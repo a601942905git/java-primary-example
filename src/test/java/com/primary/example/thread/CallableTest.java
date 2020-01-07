@@ -14,11 +14,10 @@ public class CallableTest {
 
     @Test
     public void test() throws ExecutionException, InterruptedException {
-        Callable callable = () -> "callable";
+        Callable<String> callable = () -> "callable";;
 
-        FutureTask futureTask = new FutureTask(callable);
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
-        executorService.submit(futureTask);
+        FutureTask<String> futureTask = new FutureTask<>(callable);
+        new Thread(futureTask).start();
         System.out.println(futureTask.get());
     }
 }

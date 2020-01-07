@@ -49,4 +49,38 @@ public class ArrayListTest {
         numbers.removeIf(integer -> Objects.equals(integer, 2));
         System.out.println(numbers);
     }
+
+    @Test
+    public void test2() {
+        List<Integer> numbers = new ArrayList(5);
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.add(5);
+        numbers.add(6);
+        Iterator<Integer> iterator = numbers.iterator();
+        numbers.remove(2);
+        // 报错java.util.ConcurrentModificationException
+        iterator.next();
+        System.out.println(numbers);
+    }
+
+    @Test
+    public void test3() {
+        List<Integer> numbers = new ArrayList(5);
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.add(5);
+        numbers.add(6);
+        Iterator<Integer> iterator = numbers.iterator();
+        while (iterator.hasNext()) {
+            iterator.next();
+            numbers.remove(1);
+            iterator.remove();
+        }
+        System.out.println(numbers);
+    }
 }
