@@ -41,7 +41,7 @@ public class ReduceTest {
         /**
          * reduce的第三个参数只有在使用并行流的时候才会有用，在普通的stream()中不会有效
          */
-        int worldTotal = numbers.stream().reduce(0, (sum, num) -> {
+        int worldTotal = numbers.stream().reduce(1, (sum, num) -> {
             System.out.println("current thread：" + Thread.currentThread().getName() + "，sum=" + sum + "，num=" + num);
             return sum + num;
         }, Integer::sum);
@@ -57,8 +57,11 @@ public class ReduceTest {
 
         /**
          * reduce的第三个参数只有在使用并行流的时候才会有用，在普通的stream()中不会有效
+         *
+         * 如下示例：stream中存在0~9这10个数字，并行计算会将这个10个数字分成10份，每一份执行 sum + num操作，
+         * 最后再将10份的计算结果执行Integer::sum函数，所以在并行流中执行结果为55
          */
-        int worldTotal = numbers.parallelStream().reduce(0, (sum, num) -> {
+        int worldTotal = numbers.parallelStream().reduce(1, (sum, num) -> {
             System.out.println("current thread：" + Thread.currentThread().getName() + "，sum=" + sum + "，num=" + num);
             return sum + num;
         }, Integer::sum);
