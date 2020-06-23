@@ -98,8 +98,4 @@ public class SensitiveUtils {
     public static String trim(String str) {
         return Optional.ofNullable(str).map(String::trim).orElse("");
     }
-
-    public static void main(String[] args) {
-        System.out.println(SensitiveUtils.handlerBankAccount("62238 014750 610589 06"));
-    }
 }
