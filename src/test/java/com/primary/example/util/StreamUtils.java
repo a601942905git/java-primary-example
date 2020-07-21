@@ -3,6 +3,7 @@ package com.primary.example.util;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -96,6 +97,19 @@ public class StreamUtils {
     public static <T, U extends Comparable<? super U>> List<T> reversed(
             List<T> list, Function<? super T, ? extends U> keyExtractor) {
         return removeNullElement(list).sorted(Comparator.comparing(keyExtractor).reversed()).collect(Collectors.toList());
+    }
+
+    /**
+     * 分组
+     *
+     * @param list 集合对象
+     * @param classifier 操作方法
+     * @param <K> key类型
+     * @param <T> 输入元素
+     * @return 经过分组后的map
+     */
+    public static <K, T> Map<K, List<T>> groupBy(List<T> list, Function<? super T, ? extends K> classifier) {
+        return removeNullElement(list).collect(Collectors.groupingBy(classifier));
     }
 
     /**

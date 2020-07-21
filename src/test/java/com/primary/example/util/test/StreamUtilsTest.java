@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * com.primary.example.util.test.StreamUtilsTest
@@ -24,7 +25,8 @@ public class StreamUtilsTest {
         userList.add(User.builder().id(10002).name("alone").age(24).build());
         userList.add(User.builder().id(10003).name("bob").age(18).build());
         userList.add(User.builder().id(10004).name("lucky").age(26).build());
-        userList.add(User.builder().id(10005).name("cindy").age(22).build());
+        userList.add(User.builder().id(10005).name("cindy1").age(22).build());
+        userList.add(User.builder().id(10005).name("cindy2").age(23).build());
         userList.add(null);
     }
 
@@ -62,5 +64,13 @@ public class StreamUtilsTest {
         List<User> users = StreamUtils.reversed(userList, user -> user.getAge());
         System.out.println("=======排序后=======");
         StreamUtils.println(users);
+    }
+
+    @Test
+    public void groupBy() {
+        Map<Integer, List<User>> userMap = StreamUtils.groupBy(userList, User::getId);
+        userMap.forEach((key, value) -> {
+            System.out.println("key======>" + key + "，value======>" + value);
+        });
     }
 }
