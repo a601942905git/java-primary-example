@@ -83,4 +83,22 @@ public class ArrayListTest {
         }
         System.out.println(numbers);
     }
+
+    @Test
+    public void test4() {
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.add(5);
+        Integer[] integers1 = numbers.toArray(new Integer[0]);
+        Integer[] integers2 = numbers.toArray(new Integer[numbers.size()]);
+        Integer[] integers3 = numbers.toArray(new Integer[10]);
+        Arrays.stream(integers1).forEach(System.out::println);
+        System.out.println("==============================");
+        Arrays.stream(integers2).forEach(System.out::println);
+        System.out.println("==============================");
+        Arrays.stream(integers3).forEach(System.out::println);
+    }
 }

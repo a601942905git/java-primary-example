@@ -25,5 +25,7 @@ public class LinkedHashMapTest {
         for (Map.Entry<String, Integer> entry : linkedHashMap.entrySet()) {
             System.out.println(entry.getKey() + "======>" + entry.getValue());
         }
+
+        linkedHashMap.forEach((key, value) -> System.out.println(key + "===>" + value));
     }
 }
