@@ -9,6 +9,16 @@ import java.util.concurrent.TimeUnit;
 /**
  * com.primary.example.jvm.HeapDemo
  *
+ * 1.堆空间组成：
+ *  1.1 新生代(大部分对象都在该区域被回收)：
+ *      1.1.1 eden：几乎所有对象都是在该空间创建出来
+ *      1.1.2 S0：eden空间存满后，会进行minor gc，未被清理的对象会放入幸存区，并记录存活年龄
+ *      1.1.3 S1：
+ *  1.2 老年代
+ * 2.新生代与老年代比例 = 1 ：2，可以通过-XX:NewRatio=ratio进行设置
+ * 3.eden与S0、S1比例 = 8 ：1 ：1，可以通过-XX:SurvivorRatio=ratio进行设置
+ *
+ *
  * @author lipeng
  * @date 2021/7/5 1:35 PM
  */
@@ -56,6 +66,25 @@ public class HeapTest {
             pictureList.add(picture);
             TimeUnit.MILLISECONDS.sleep(400);
         }
+    }
+
+    /**
+     * 添加vm options:-Xms600M -Xmx600M
+     * 新生代：eden：200M s0：200M S1：200M
+     * 老年代：400M
+     *
+     * 新生代 ：老年代 = 1 ：2
+     * -XX:NewRatio=ratio 用于设置新生代与老年代的比例，默认值为2，也就是新生代 ：老年代 = 1 ：2
+     *
+     * -XX:SurvivorRatio=ratio 用于设置新生代中eden、S0 、S1比例
+     * 默认值为8，也就是eden ：S0 ：S1 = 8 ：1 ：1(需要在vm options中设置-XX:SurvivorRatio=8)
+     *
+     * @throws InterruptedException
+     */
+    @Test
+    public void test2() throws InterruptedException {
+        System.out.println("程序开始执行");
+        TimeUnit.SECONDS.sleep(1000);
     }
 
     public static class Picture {
