@@ -1,5 +1,7 @@
 package com.primary.example.jvm;
 
+import org.junit.Test;
+
 /**
  * com.primary.example.jvm.Singleton
  *
@@ -20,7 +22,8 @@ public class Singleton {
         return LazyHolder.INSTANCE;
     }
 
-    public static void main(String[] args) {
-        Singleton.getInstance();
+    @Test
+    public void test() {
+        System.out.println(Singleton.getInstance());
     }
 }
