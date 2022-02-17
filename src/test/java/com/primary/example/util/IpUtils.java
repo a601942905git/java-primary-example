@@ -14,7 +14,7 @@ import java.util.Enumeration;
  */
 public class IpUtils {
 
-    public static String getLocalAddress() {
+    public static String getHostAddress() {
         try {
             Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
             while (networkInterfaces.hasMoreElements()) {
