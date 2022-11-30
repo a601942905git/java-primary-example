@@ -79,4 +79,17 @@ public class DateUtils {
     public static Date millsToDate(long mills) {
         return new Date(mills);
     }
+
+    public static LocalDateTime utcStringToLocalDateTime(String utcString) {
+        Assert.hasLength(utcString, "utc string is empty");
+        ZonedDateTime zonedDateTime = ZonedDateTime.parse(utcString);
+        Instant instant = zonedDateTime.toInstant();
+        return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+    }
+
+    public static String localDateTimeToUtcString(LocalDateTime localDateTime) {
+        Assert.notNull(localDateTime, "local date time is null");
+        ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.systemDefault());
+        return zonedDateTime.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+    }
 }

@@ -68,4 +68,14 @@ public class DateUtilsTest {
     public void millsToDate() {
         System.out.println(DateUtils.millsToDate(1597300289327L));
     }
+
+    @Test
+    public void utcStringToLocalDateTime() {
+        System.out.println(DateUtils.utcStringToLocalDateTime("2022-11-30T17:42:14+08:00"));
+    }
+
+    @Test
+    public void localDateTimeToUtcString() {
+        System.out.println(DateUtils.localDateTimeToUtcString(LocalDateTime.now()));
+    }
 }
